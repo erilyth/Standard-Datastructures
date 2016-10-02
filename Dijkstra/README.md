@@ -1,4 +1,5 @@
 Dijkstra's algorithm
+
 Djikstra's algorithm solves the problem of finding the shortest path from a point in a graph (the source) to a destination. It turns out that one can find the shortest paths from a given source to all points in a graph in the same time, hence this problem is sometimes called the single-source shortest paths problem.
 
 Algorithm
