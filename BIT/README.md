@@ -37,7 +37,3 @@ For the update method -
  a) Add value to BITree[index]  
  b) Go to parent of BITree[index].  Parent can be obtained by removing
      the last set bit from index, i.e., index = index + (index & (-index))
-
- 
-
- 
