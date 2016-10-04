@@ -26,12 +26,12 @@ int ternarysearch(int l, int r, int x)
 
 int main()
 {
-	int i,n,k,pos;
-	scanf("%d", &n);
-	for(i=0;i<n;i++)
-		scanf("%d", &A[i]);
+    int i,n,k,pos;
+    scanf("%d", &n);
+    for(i=0;i<n;i++)
+        scanf("%d", &A[i]);
     scanf("%d", &k);
-	pos = ternarysearch(0,n-1,k);
-	printf("%d\n", pos);
-	return 0;
+    pos = ternarysearch(0,n-1,k);
+    printf("%d\n", pos);
+    return 0;
 }
