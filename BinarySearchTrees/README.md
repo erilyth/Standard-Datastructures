@@ -1,3 +1,5 @@
+# BINARY SEARCH TREE
+
 Binary Search Tree is node based binary tree data structure with the following properties: 
  
 * The Left subtree contains the nodes with keys less than the node's key. 
@@ -5,7 +7,7 @@ Binary Search Tree is node based binary tree data structure with the following p
 * Both the right and left subtree should also be binary search tree. 
 * There should not be any duplicate nodes. 
  
-SEARCHING 
+## SEARCHING 
  
 Searching can be a recursive or iterative process.  
  
@@ -13,8 +15,8 @@ We begin first by comparing the value with the root node and if the value is equ
  
 This operation of searching requires O(log n) time. 
  
-Pseudo Code: 
-search for a matching node 
+### Pseudo Code: 
+Search for a matching node 
   1. Start at the root node as current node 
   2. If the search key’s value matches the current node’s key then found a match 
  3. If search key’s value is greater than current node’s 
@@ -26,7 +28,7 @@ search for a matching node
 
  
 
-Insert Node 
+## Insert Node 
  
 Insert Node operation also behaves in the same manner as Searching operation. Firstly, it checks whether the key is the same as that of root, if not then we either choose the right subtree or the left subtree depending upon the value passed is greater or smaller than the root node value respectively. 
  
@@ -36,7 +38,7 @@ This is also a recursive operation, as we start from the root and go until we fi
  
 It takes O(log n) time i.e. proportional to the height of the tree. 
  
-Pseudo Code: 
+### Pseudo Code: 
 Always insert new node as leaf node 
 2. Start at root node as current node 
 3. If new node’s key < current’s key 
