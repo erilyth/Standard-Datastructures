@@ -23,7 +23,7 @@ int main()
     int i,n,k,pos;
     scanf("%d", &n);
     for(i=0;i<n;i++)
-	   scanf("%d", &A[i]);
+        scanf("%d", &A[i]);
     scanf("%d", &k);
     pos = ternarysearchrecursive(0,n-1,k);
     printf("%d\n", pos);
