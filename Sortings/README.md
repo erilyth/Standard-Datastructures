@@ -1,6 +1,10 @@
+# Sorting 
+
+## Merge Sort
+
 Merge sort is a sorting technique based on divide and conquer technique. Merge sort first divides the array into equal halves and then combines them in a sorted manner 
 
-Working of Merge Sort: 
+### Working of Merge Sort: 
 
 To understand merge sort, we take an unsorted array as depicted below − 
 14,33,27,10,35,19,42,44
@@ -14,7 +18,8 @@ Merge Sort Division
 We further divide these arrays and we achieve atomic value which can no more be divided.
 14 33 27 10 35 19 42 44
 
-Merge Sort Division 
+### Merge Sort Division 
+
 We first compare the element for each list and then combine them into another list in sorted manner. We see that 14 and 33 are in sorted positions. We compare 27 and 10 and in the target list of 2 values we put 10 first, followed by 27. We change the order 19 and 35. 42 and 44 are placed sequentially. 
 Merge Sort Combine 
 14,33 10,27 19,35 42,44
@@ -27,7 +32,7 @@ Merge Sort
 
  Worst case Time Complexity-O(nlogn) 
 
-ALGORITHM: 
+### ALGORITHM: 
 
 Step 1 − if it is only one element in the list it is already sorted, return.  
 
@@ -37,7 +42,7 @@ Step 3 − merge the smaller lists into new list in sorted order.
 
  
 
-QUICK SORT 
+## QUICK SORT 
 
 Quicksort is a divide and conquer algorithm. Quicksort first divides a large array into two smaller sub-arrays: the low elements and the high elements. Quicksort can then recursively sort the sub-arrays. 
 
@@ -55,7 +60,7 @@ The pivot selection and partitioning steps can be done in several different ways
 
  
 
-RANDOMIZED QUICK SORT: 
+## RANDOMIZED QUICK SORT: 
 
 Randomized Quick Sort is an extension of Quick Sort in which pivot element is chosen randomly.Worst case happens when randomly chosen pivot is got selected in sorted or reverse sorted order. 
 
