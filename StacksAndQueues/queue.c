@@ -1,80 +1,93 @@
-#include<stdio.h>
-#include<stdlib.h>
+//Include header files 
+#include <stdio.h>
+#include <stdlib.h>
 
-struct Queue{
+//Create Queue struct
+struct Queue {
 	int value;
 	struct Queue* next;
 };
 
+//Initialising head and tail variables
 struct Queue* head=NULL;
 struct Queue* tail=NULL;
 
-void enqueue(int x)
-{
+//Enqueuing a variable into the array
+void enqueue(int x) {
+	
 	struct Queue* temp=malloc(sizeof(struct Queue));
 	temp->value=x;
 	temp->next=NULL;
-	if(head==tail && head==NULL)
-	{
+	
+	if(head==tail && head==NULL) {
 		head=temp;
 		tail=head;
 	}
-	else
-	{
+	else {
 		head->next=temp;
 		head=head->next;
 	}
+
 }
 
-void dequeue()
-{
-	if(head==tail && head!=NULL)
-	{
+//Dequeues the element in the rear
+void dequeue() {
+	
+	if(head==tail && head!=NULL) {
 		tail=NULL;
 		head=NULL;
 	}
-	else if(head!=NULL)
-	{
+	else if(head!=NULL) {
 		tail=tail->next;
 	}
+
 }
 
-void front()
-{
+//Return the front element of the Queue
+void front() {
+	
 	if(tail!=NULL)
 		printf("%d\n", tail->value);
 }
 
-void printtot()
-{
+//Prints all the elements in the Queue
+void printtot() {
+	
 	struct Queue* ptr=tail;
-	while(ptr!=NULL)
-	{
+	//Traverses throught the array
+	while(ptr!=NULL) {
 		printf("%d ", ptr->value);
 		ptr=ptr->next;
 	}
+	
 	printf("\n");
 }
 
-int main()
-{
-	int a;
-	int i,n,m;
+//Main function
+int main() {
+	//Variable initialisation
+	int i,n,m,a;
 	scanf("%d", &n);
-	while(n!=5)
-	{
-		if(n==1)
-		{
+
+	//Menu driven method
+	while(n!=5) {
+		//Enqueues the element in the Queue
+		if(n==1) {
 			scanf("%d", &a);
 			enqueue(a);
 		}
+		//Dequeues the element at the front
 		if(n==2)
 			dequeue();
+		//Returns the element at the front
 		if(n==3)
 			front();
+		//Prints all the elements of the Queue
 		if(n==4)
 			printtot();
+
 		scanf("%d", &n);
 	}
+
 	return 0;
 }
