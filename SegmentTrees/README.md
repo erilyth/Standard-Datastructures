@@ -1,6 +1,6 @@
-###**Segment Trees**
+# **Segment Trees**
 
-A segment tree is a flexible data-structure built upon an array that stores any kind of information of the subsegments(intervals) of the base array.
+A Segment Tree is a flexible data-structure built upon an array that stores any kind of information of the subsegments(intervals) of the base array.
 These information may be, for example, the sum of the elements in the interval or the biggest/smallest value in the interval.
 This structure is basically maintained through three operations:
 
@@ -11,10 +11,10 @@ This structure is basically maintained through three operations:
 * **Update tree**;
   Given `N` the size of the array, `I` the index of an element to be updated and `X` the value to update the value at `I` to, recursively updates the nodes that store any information for a interval that contains `I`. Complexity `O(log(N))`.
 
-It is possible to see that a sum segment tree has very similar practical behavior to a Binary Indexed Tree (BIT).
+It is possible to see that a sum Segment Tree has very similar practical behavior to a Binary Indexed Tree (BIT).
 So the main difference is that a segment tree is easily adaptable to store any information other than the sum of the interval.
 
-###Implementation
+## Implementation
 
 Segment trees, despite of being binary trees, are easiest and more efficiently maintained in an array of size `2N`.
 
