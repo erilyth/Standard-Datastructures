@@ -1,25 +1,31 @@
-#include<stdio.h>
-#include<stdlib.h>
+//Including header files 
+#include <stdio.h>
+#include <stdlib.h>
 
+//Global variable declaration
 int numofelem=0;
 
+//Struct to represent node elements 
+//+ of the AVL Tree 
 struct Node{
 	int val;
 	int height;
 	int balance;
+	
 	struct Node* left;
 	struct Node* right;
 };
 
-int maxx(int a, int b)
-{
-	if(b>a)
+// Function to return maximum of
+//+ two elements
+int maxx(int a, int b) {
+	if(b > a)
 		return b;
 	return a;
 }
 
-int maxim(struct Node* a, struct Node* b)
-{
+//Function to return maximum height
+int maxim(struct Node* a, struct Node* b) {
 	if(b!=NULL && a==NULL)
 		return b->height;
 	if(b==NULL && a!=NULL)
@@ -30,8 +36,8 @@ int maxim(struct Node* a, struct Node* b)
 		return maxx(a->height,b->height);
 }
 
-int getbalance(struct Node* a, struct Node* b)
-{
+//Function to find difference of heights
+int getbalance(struct Node* a, struct Node* b) {
 	if(a!=NULL && b!=NULL)
 		return a->height+1-(b->height+1);
 	if(a!=NULL)
@@ -42,49 +48,54 @@ int getbalance(struct Node* a, struct Node* b)
 		return 0;
 }
 
-struct Node* leftrotate(struct Node* z)
-{
+//FUnction to left rotate elements of the AVL tree
+struct Node* leftrotate(struct Node* z) {
 	struct Node* temp=z->left;
 	struct Node* temp2=z->right->left;
 	struct Node* tempfin=z->right;
+	
 	tempfin->left=z;
+	
 	z->right=temp2;
 	z->left=temp;
+	
 	tempfin->left->height=maxim(tempfin->left->left,tempfin->left->right)+1;
 	tempfin->height=maxim(tempfin->left,tempfin->right)+1;	
 	tempfin->left->balance=getbalance(tempfin->left->left,tempfin->left->right);
 	tempfin->balance=getbalance(tempfin->left,tempfin->right);
+	
 	return tempfin;
 }
 
-struct Node* rightrotate(struct Node* z)
-{
+//Function to right rotate elements of the AVL tree
+struct Node* rightrotate(struct Node* z) {
 	struct Node* temp=z->right;
 	struct Node* temp2=z->left->right;
 	struct Node* tempfin=z->left;
+	
 	tempfin->right=z;
+	
 	z->left=temp2;
 	z->right=temp;
+	
 	tempfin->right->height=maxim(tempfin->right->left,tempfin->right->right)+1;
 	tempfin->height=maxim(tempfin->right,tempfin->left)+1;
 	tempfin->right->balance=getbalance(tempfin->right->left,tempfin->right->right);
 	tempfin->balance=getbalance(tempfin->left,tempfin->right);
+	
 	return tempfin;
 }
 
-struct Node* delete(struct Node* temp, int x)
-{
-    if(temp->val==x && temp->left==NULL && temp->right==NULL)
-    {
+struct Node* delete(struct Node* temp, int x) {
+    
+    if(temp->val==x && temp->left==NULL && temp->right==NULL) {
 	numofelem--;
         return NULL;
     }
     else if(temp->left==NULL && temp->right==NULL)
 	    return temp;
-    else
-    {
-        if(temp->val==x && temp->left!=NULL)
-        {
+    else {
+        if(temp->val==x && temp->left!=NULL) {
             struct Node* temp2=temp->left;
             while(temp2->right!=NULL)
                 temp2=temp2->right;
@@ -93,8 +104,7 @@ struct Node* delete(struct Node* temp, int x)
 	    temp->height=maxim(temp->left,temp->right)+1;
 	    temp->balance=getbalance(temp->left,temp->right);
 	}
-        else if(temp->val==x && temp->right!=NULL)
-        {
+        else if(temp->val==x && temp->right!=NULL) {
             struct Node* temp2=temp->right;
             while(temp2->left!=NULL)
                 temp2=temp2->left;
@@ -109,32 +119,28 @@ struct Node* delete(struct Node* temp, int x)
             temp->right=delete(temp->right,x);	
 	temp->height=maxim(temp->left,temp->right)+1;
 	temp->balance=getbalance(temp->left,temp->right);
-	if(temp->balance==-2 && (temp->right->balance==-1||temp->right->balance==0))
-	{
+	
+	if(temp->balance==-2 && (temp->right->balance==-1||temp->right->balance==0)) {
 		temp=leftrotate(temp);
 	}
-	else if(temp->balance==-2 && temp->right->balance==1)
-	{
+	else if(temp->balance==-2 && temp->right->balance==1) {
 		temp->right=rightrotate(temp->right);
 		temp=leftrotate(temp);
 	}
-	else if(temp->balance==2 && (temp->left->balance==1||temp->left->balance==0))
-	{
+	else if(temp->balance==2 && (temp->left->balance==1||temp->left->balance==0)) {
 		temp=rightrotate(temp);
 	}
-	else if(temp->balance==2 && temp->left->balance==-1)
-	{
+	else if(temp->balance==2 && temp->left->balance==-1) {
 		temp->left=leftrotate(temp->left);
 		temp=rightrotate(temp);
 	}
+	
 	return temp;
     }
 }
 
-struct Node* insert(int val, struct Node* temp)
-{
-	if(temp==NULL)
-	{
+struct Node* insert(int val, struct Node* temp) {
+	if(temp==NULL) {
 		struct Node* new=malloc(sizeof(struct Node));
 		new->val=val;
 		new->left=NULL;
@@ -151,28 +157,27 @@ struct Node* insert(int val, struct Node* temp)
 		temp->right=insert(val,temp->right);
 	temp->height=maxim(temp->left,temp->right)+1;
 	temp->balance=getbalance(temp->left,temp->right);
-	if(temp->balance==-2 && (temp->right->balance==-1 || temp->right->balance==0))
-	{
+	
+	if(temp->balance==-2 && (temp->right->balance==-1 || temp->right->balance==0)) {
 		temp=leftrotate(temp);
 	}
-	else if(temp->balance==-2 && temp->right->balance==1)
-	{
+	else if(temp->balance==-2 && temp->right->balance==1) {
 		temp->right=rightrotate(temp->right);
 		temp=leftrotate(temp);
 	}
-	else if(temp->balance==2 && (temp->left->balance==1 || temp->left->balance==0))
-	{
+	else if(temp->balance==2 && (temp->left->balance==1 || temp->left->balance==0)) {
 		temp=rightrotate(temp);
 	}
-	else if(temp->balance==2 && temp->left->balance==-1)
-	{
+	else if(temp->balance==2 && temp->left->balance==-1) {
 		temp->left=leftrotate(temp->left);
 		temp=rightrotate(temp);
 	}
+	
 	return temp;
 }
-void dfs(struct Node* temp)
-{
+
+//dfs Function 
+void dfs(struct Node* temp) {
 	if(temp==NULL)
 		return;
 	if(temp->left!=NULL)
@@ -182,20 +187,24 @@ void dfs(struct Node* temp)
 	printf("%d ", temp->val);
 }
 
-int main()
-{
+//Main function
+int main() {
+	//Variable declaration
 	struct Node* mytree=NULL;
 	int i,n,a;
 	scanf("%d", &n);
-	for(i=0;i<n;i++)
-	{
+	
+	//Input elements in the AVL Tree
+	for(i=0; i<n; i++) {
 		scanf("%d", &a);
 		mytree=insert(a,mytree);
 	}
+
+	//Deletions in the AVL Tree
 	printf("Enter number of deletions:\n");
 	scanf("%d", &n);
-	for(i=0;i<n;i++)
-	{
+	
+	for(i=0; i<n; i++) {
 		scanf("%d", &a);
 		if(numofelem>0)
 			mytree=delete(mytree,a);
