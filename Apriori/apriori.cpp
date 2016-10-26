@@ -34,9 +34,7 @@ node *createnode(int x)
 		temp->value = 0;
 		temp->child = (node**)malloc((x+1)*sizeof(node*));
 		for(i = 0; i <= x; i++)
-		{
 			temp->child[i] = NULL;
-		}
 	}
 	return temp;
 };
@@ -54,9 +52,7 @@ node insert(node *root, vector<vector <int> > x, vector<int> y, int p)
 		for(intcol = introw->begin(); intcol != introw->end(); intcol++)
 		{
 			if(!temp->child[*intcol])
-			{
 				temp->child[*intcol] = createnode(p);
-			}
 			temp = temp->child[*intcol];
 			temp->value = *intcol;
 		}
@@ -282,7 +278,6 @@ int main()
     count=1;
 	for (setiter=mapp.begin(); setiter != mapp.end(); setiter++)
 	{
-		// cout << *setiter+"\n";
 		set_index[*setiter] = count;
 		reverse_mapping[count] = *setiter;
 		count++;
@@ -296,9 +291,7 @@ int main()
 		inttempvector.clear();
 		total_itemsets++;
     	for (itCol = itRow->begin(); itCol != itRow->end(); itCol++) 
-    	{
     		inttempvector.push_back(set_index[*itCol]);
-    	}
     	sort(inttempvector.begin(), inttempvector.end());
     	it = unique(inttempvector.begin(), inttempvector.end());
     	inttempvector.resize(distance(inttempvector.begin(),it));
@@ -310,9 +303,7 @@ int main()
 	for (intRow = intdata.begin(); intRow != intdata.end(); intRow++)
 	{
     	for (intCol = intRow->begin(); intCol != intRow->end(); intCol++) 
-    	{
     		occur[*intCol]+=1;
-    	}
 	}
 	mincount=minsup*total_itemsets;
 	node *root = createnode(n);
@@ -333,21 +324,15 @@ int main()
 	vector< vector <int> > twodimen;
 	vector<int> onetwodimen;
 	for(int qqq=0;qqq<=n;qqq++)
-	{
 		onetwodimen.push_back(0);
-	}
 	for(int ppp=0;ppp<=n;ppp++)
-	{
 		twodimen.push_back(onetwodimen);
-	}
 	for (intRow = intdata.begin(); intRow != intdata.end(); intRow++)
 	{
     	for (intCol = intRow->begin(); intCol != intRow->end(); intCol++) 
     	{
 			for(intdCol = intCol+1; intdCol !=intRow->end(); intdCol++)
-			{    		
     			twodimen[*intCol][*intdCol]++;
-    		}
     	}
 	}
 	onetwodimen.clear();
@@ -470,9 +455,7 @@ int main()
 		*root = insert(root, fim, intduplicatevector, n);
 		dupfim.clear();
 		if(fim.empty())
-		{
 			break;
-		}
 		w++;
 	}
 
@@ -487,7 +470,6 @@ int main()
     		if(intCol!=(intRow->end()-1))
     			towritefile << ",";
     	}
-    	// totalfimcount++;
     	towritefile << "\n";
 	}
 	if(std::atof(configfile[4].c_str())==1)
@@ -504,7 +486,6 @@ int main()
     	totalfimcount++;
     	towritefile << "\n";
 	}
-	// pri_tree(root);
 	towritefile.close();
 	return 0;
 }
