@@ -1,0 +1,5 @@
+input,input.csv
+output,output.csv
+support,0.01
+confidence,0.8
+flag,1
