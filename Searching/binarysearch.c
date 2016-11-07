@@ -1,14 +1,16 @@
-#include<stdio.h>
-#include<stdlib.h>
+//Including Header files
+#include <stdio.h>
+#include <stdlib.h>
 
-int A[1000000];
-
-int binarysearch(int size, int x)
-{
+//Binary Search function
+int binarysearch(int A[],int size, int x) {
+    //Variable declaration
     int l,r,m;
-    l=0; r=size;
-    while(l<=r)
-    {
+    l=0; 
+    r=size;
+
+    //Binary Search implementation
+    while(l<=r) {
         m=(l+r)/2;
         if(A[m]<x)
             l=m+1;
@@ -17,17 +19,26 @@ int binarysearch(int size, int x)
         else
             return m;
     }
+
     return -1;
 }
 
-int main()
-{
+//Main Function
+int main() {
+
+    //Declaring a memory-efficient array
     int i,n,k,pos;
     scanf("%d", &n);
+    int A[n];
+
+    //Inputting the values of the array
     for(i=0;i<n;i++)
         scanf("%d", &A[i]);
     scanf("%d", &k);
-    pos = binarysearch(n-1,k);
+
+    //Calling the search function
+    pos = binarysearch(A,n-1,k);
     printf("%d\n", pos);
+    
     return 0;
 }

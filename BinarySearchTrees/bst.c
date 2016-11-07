@@ -1,13 +1,16 @@
-#include<stdio.h>
-#include<stdlib.h>
+//Including Header files 
+#include <stdio.h>
+#include <stdlib.h>
 
-struct Node{
+//Struct to dfine a node in the tree
+struct Node {
     int val;
     struct Node* left;
     struct Node* right;
 };
 
-struct Queue{
+//Queue using a struct
+struct Queue {
     struct Node* value;
     struct Queue* next;
 };
@@ -18,22 +21,18 @@ int state;
 
 struct Node* mytree=NULL;
             
-struct Node* delete(struct Node* temp, int x)
-{
+struct Node* delete(struct Node* temp, int x) {
     if(temp->val==x && temp->left==NULL && temp->right==NULL)
         return NULL;
-    else
-    {
-        if(temp->val==x && temp->left!=NULL)
-        {
+    else {
+        if(temp->val==x && temp->left!=NULL) {
             struct Node* temp2=temp->left;
             while(temp2->right!=NULL)
                 temp2=temp2->right;
             temp->val=temp2->val;
             temp->left=delete(temp->left,temp2->val);
         }
-        else if(temp->val==x && temp->right!=NULL)
-        {
+        else if(temp->val==x && temp->right!=NULL) {
             struct Node* temp2=temp->right;
             while(temp2->left!=NULL)
                 temp2=temp2->left;
@@ -48,42 +47,36 @@ struct Node* delete(struct Node* temp, int x)
     }
 }
 
-void preorder(struct Node* temp)
-{
-    if(temp!=NULL)
-    {
+//Function to traverse in a pre-order manner
+void preorder(struct Node* temp) {
+    if(temp!=NULL) {
         printf("%d ", temp->val);
         preorder(temp->left);
         preorder(temp->right);
     }
 }
 
-void postorder(struct Node* temp)
-{
-    if(temp!=NULL)
-    {
+//Function to traverse in  post-order
+void postorder(struct Node* temp) {
+    if(temp!=NULL) {
         postorder(temp->left);
         postorder(temp->right);
         printf("%d ", temp->val);
     }
 }
 
-void inorder(struct Node* temp)
-{
-    if(temp!=NULL)
-    {
+//Function to traverse inorder
+void inorder(struct Node* temp) {
+    if(temp!=NULL) {
         inorder(temp->left);
         printf("%d ", temp->val);
         inorder(temp->right);
     }
 }
 
-void checktree(struct Node* temp, int min, int max)
-{
-    if(temp!=NULL)
-    {
-        if(temp->val>=min && temp->val<=max)
-        {
+void checktree(struct Node* temp, int min, int max) {
+    if(temp!=NULL) {
+        if(temp->val>=min && temp->val<=max) {
             checktree(temp->left,min,temp->val);
             checktree(temp->right,temp->val+1,max);
         }
@@ -92,43 +85,39 @@ void checktree(struct Node* temp, int min, int max)
     }
 }
 
-int find(int x)
-{
+//Function to find an element in the BST
+int find(int x) {
     struct Node* temp=mytree;
-    while(temp!=NULL)
-    {
+    while(temp!=NULL) {
         if(temp->val==x)
             return 1;
         if(temp->val<x)
             temp=temp->right;
         else
             temp=temp->left;
+    
     }
+
     return 0;
 }
 
-void insert(int x)
-{
+//Function to insert an element in the BST
+void insert(int x) {
     struct Node* temp=mytree;
     struct Node* temp2=malloc(sizeof(struct Node));
     temp2->left=NULL;
     temp2->right=NULL;
     temp2->val=x;
-    if(mytree==NULL)
-    {
+    if(mytree==NULL) {
         mytree=temp2;
     }
-    else
-    {
-        while(1)
-        {
-            if(temp->val>=x && temp->left==NULL)
-            {
+    else {
+        while(1) {
+            if(temp->val>=x && temp->left==NULL) {
                 temp->left=temp2;
                 break;
             }
-            else if(temp->val<x && temp->right==NULL)
-            {
+            else if(temp->val<x && temp->right==NULL) {
                 temp->right=temp2;
                 break;
             }
@@ -141,44 +130,38 @@ void insert(int x)
     return;
 }
 
-int main()
-{
+//Main function
+int main() {
+    //Variable initialisation
     int x,y,z;
     scanf("%d", &x);
-    while(x!=6)
-    {
-        if(x==1)
-        {
+    //Menu-driven to get a function of BST
+    while(x!=6) {
+        if(x==1) {
             scanf("%d", &y);
             insert(y);
         }
-        if(x==2)
-        {
+        if(x==2) {
             scanf("%d", &y);
             printf("%d\n", find(y));
         }
-        if(x==3)
-        {
+        if(x==3) {
             inorder(mytree);
             printf("\n");
         }
-        if(x==4)
-        {
+        if(x==4) {
             preorder(mytree);
             printf("\n");
         }
-        if(x==5)
-        {
+        if(x==5) {
             postorder(mytree);
             printf("\n");
         }
-        if(x==7)
-        {
+        if(x==7) {
             scanf("%d", &y);
             mytree=delete(mytree,y);
         }
-        if(x==8)
-        {
+        if(x==8) {
             state=0;
             checktree(mytree,-100000000,1000000000);
             if(state==0)
