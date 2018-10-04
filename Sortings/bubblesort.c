@@ -1,7 +1,7 @@
 #include <stdio.h>
 int main()
 {
-    int data[100],i,n,step,temp;
+    int data[100],i,n,step;
     printf("Enter the number of elements to be sorted: ");
     scanf("%d",&n);
     for(i=0;i<n;++i)
@@ -15,9 +15,7 @@ int main()
     {
         if(data[i]>data[i+1])   /* To sort in descending order, change > to < in this line. */
         {
-            temp=data[i];
-            data[i]=data[i+1];
-            data[i+1]=temp;
+            data[i+1]=data[i]+data[i+1]-(data[i]=data[i+1]);
         }
     }
     printf("In ascending order: ");
