@@ -55,6 +55,17 @@ int main()
 			head++;
 			stack[head]=A[i];
 		}
+		else if(A[i]=='^')
+		{
+			while(head!=-1 && stack[head]!='(')
+			{
+				fin[final]=stack[head];
+				final++;
+				head--;
+			}
+			head++;
+			stack[head]=A[i];
+		}
 		else
 		{
 			fin[final]=A[i];
