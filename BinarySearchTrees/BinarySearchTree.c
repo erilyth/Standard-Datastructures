@@ -1,3 +1,5 @@
+//including  input output libraries
+//including standard libraries
 #include<stdio.h>
 #include<stdlib.h>
 
