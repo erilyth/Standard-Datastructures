@@ -16,8 +16,8 @@ int mins(int a, int b)
     return b;
 }
 
-//For problem "password" codeforces, zindex box method to calculate length of prefix that a substring is.
-
+//For problem "password" codeforces, z-index box method to calculate length of prefix that a substring is.
+//z-index is the level of visibility
 int main()
 {
     cin >> str;
